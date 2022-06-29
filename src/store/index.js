@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import company from "@/store/company";
+import trends from './modules/trends'
+import searchResults from './modules/searchResults'
 
 Vue.use(Vuex)
 
@@ -18,6 +19,7 @@ export default new Vuex.Store({
 
   },
   modules: {
-    company,
+    trends,
+    searchResults
   }
 })

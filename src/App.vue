@@ -1,32 +1,62 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+  <v-app style="background: #f2f2f9;">
+    <v-app-bar clipped-left app color="#24242E" elevation="0">
+      <app-bar-component />
+    </v-app-bar>
+    <v-navigation-drawer
+        id="leftNavbar"
+        v-if="$vuetify.breakpoint.lgAndUp"
+        app
+        clipped
+        left
+        :mini-variant-width="79"
+        width="297"
+    >
+      <!-- expand-on-hover -->
+      <navigation />
+    </v-navigation-drawer>
+    <v-navigation-drawer
+        id="leftNavbar"
+        v-if="$vuetify.breakpoint.mdAndDown"
+        v-model="navigationBar"
+        left
+        fixed
+        temporary
+    >
+      <navigation />
+    </v-navigation-drawer>
+    <v-main>
+      <router-view/>
+    </v-main>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import appBarComponent from "./components/appBarComponent";
+import navigation from "./components/navigation";
 
-#nav {
-  padding: 30px;
-}
+export default {
+  name: 'App',
+  components: {
+    appBarComponent,
+    navigation
+  },
+  data: () => ({
+    showMiniVariant: false,
+    navigationBar: false,
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+    //
+  }),
+  mounted: function () {
+    this.$root.$on("showHideNavigation", () => {
+      this.navigationBar = !this.navigationBar;
+    });
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+
+  },
+  computed: {
+  },
+  methods: {
+  },
+};
+</script>
