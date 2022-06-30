@@ -1,7 +1,7 @@
 <template>
   <v-app style="background: #f2f2f9;">
     <v-app-bar clipped-left app color="#24242E" elevation="0">
-      <app-bar-component />
+      <app-bar-component/>
     </v-app-bar>
     <v-navigation-drawer
         id="leftNavbar"
@@ -12,8 +12,7 @@
         :mini-variant-width="79"
         width="297"
     >
-      <!-- expand-on-hover -->
-      <navigation />
+      <navigation/>
     </v-navigation-drawer>
     <v-navigation-drawer
         id="leftNavbar"
@@ -23,7 +22,7 @@
         fixed
         temporary
     >
-      <navigation />
+      <navigation/>
     </v-navigation-drawer>
     <v-main>
       <router-view/>
@@ -36,7 +35,6 @@ import appBarComponent from "./components/appBarComponent";
 import navigation from "./components/navigation";
 
 export default {
-  name: 'App',
   components: {
     appBarComponent,
     navigation
@@ -44,19 +42,11 @@ export default {
   data: () => ({
     showMiniVariant: false,
     navigationBar: false,
-
-    //
   }),
   mounted: function () {
     this.$root.$on("showHideNavigation", () => {
       this.navigationBar = !this.navigationBar;
     });
-
-
-  },
-  computed: {
-  },
-  methods: {
   },
 };
 </script>
