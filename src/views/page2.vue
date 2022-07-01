@@ -31,7 +31,6 @@ export default {
       clearTimeout(this.time)
       this.time=setTimeout(() => {
         if (input.length > 2) {
-          console.log(input,delay)
           this.fetchResults(input);
         }      }, delay)
     },
