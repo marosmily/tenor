@@ -22,7 +22,7 @@
     </div>
     <div class="bottomPart" >
       <div class="afterNav" >
-        <span>Developed by MAROSMILY</span>
+        <span>Developed by MAROS MILY</span>
       </div>
     </div>
 
