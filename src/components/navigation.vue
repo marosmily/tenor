@@ -20,9 +20,9 @@
         </v-list>
       </div>
     </div>
-    <div class="bottomPart">
-      <div class="afterNav">
-        <span>Developed by Maros Mily</span>
+    <div class="bottomPart" >
+      <div class="afterNav" >
+        <span>Developed by MAROSMILY</span>
       </div>
     </div>
 

@@ -83,7 +83,8 @@
   height: 100%;
 
   .bottomPart {
-    position: absolute;
+    position: fixed;
+    width: 150px;
     bottom: 0;
     right: 180px;
   }
