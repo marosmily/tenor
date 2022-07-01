@@ -1,3 +1,17 @@
+<style>
+.span{
+  font-size: 12px;
+  font-weight: 700;
+}
+.span:active{
+  color: red;
+}
+.tagCard{
+  width: 110px;  height: 90px; padding: 5px;
+}.tagCard:after{
+  width: 110px;  height: 90px; padding: 5px; background: red;
+}
+</style>
 <template>
   <v-row justify="center" class="ma-0 pa-0">
     <v-col cols="12" md="8" lg="10" :class="[$vuetify.breakpoint.mdAndDown ?  'cardMobile':'card' ]">
@@ -5,10 +19,11 @@
         <v-tabs height="110px" hide-slider center-active
                 background-color="white"
         >
-          <v-tab style="width: 110px" v-for="category in allCategories.tags" :key="category.image">
-            <div class="trendCard" @click="categoryClicked(category)">
-              <v-img height="80px" :src=category.image></v-img>
-              <span>{{ category.name }}</span>
+          <v-tab @click="activeCategory=''">#trending</v-tab>
+          <v-tab v-for="category in allCategories.tags" :key="category.name">
+            <div class="tagCard"  @click="categoryClicked(category)">
+            <v-img  height="80px" :src=category.image></v-img>
+            <span class="span">{{ category.name }}</span>
             </div>
           </v-tab>
         </v-tabs>
