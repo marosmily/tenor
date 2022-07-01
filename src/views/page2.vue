@@ -5,7 +5,7 @@
   <v-row justify="center" class="ma-0 pa-0">
     <v-col cols="12" md="8" lg="10" :class="[$vuetify.breakpoint.mdAndDown ?  'cardMobile':'card' ]">
       <v-row justify="center" class="pa-4 pr-5 ma-0">
-          <v-text-field color="#3FAEA3" label="Search" placeholder="Search" outlined v-model="input" hide-details v-on:keyup="saveInput(input)" />
+          <v-text-field color="#3FAEA3" label="Search" placeholder="Search" outlined v-model="input" hide-details v-on:keyup="timer(input)" />
       </v-row>
       <v-row justify="center" class="content">
         <v-col cols="12" :style="[$vuetify.breakpoint.mdAndDown ? { 'column-count': 2 } : {  'column-count': 4}]" class="pt-0 content-column">
@@ -22,22 +22,23 @@ import {mapGetters, mapActions} from 'vuex'
 export default {
   data: () => ({
         input: '',
-        timer: null,
+        time:null
       }
   ),
   methods: {
-    saveInput: function (input) {
-      if (this.timer) {
-        clearTimeout(this.timer)
-      }
-      setTimeout(() => {
+    timer:function(input) {
+      let delay = 2000
+      clearTimeout(this.time)
+      this.time=setTimeout(() => {
         if (input.length > 2) {
+          console.log(input,delay)
           this.fetchResults(input);
-        }
-      }, 200)
+        }      }, delay)
     },
+
     ...mapActions(['fetchResults'])
   },
+
   computed:
       mapGetters(['allResults']),
 
