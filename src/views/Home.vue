@@ -1,16 +1,22 @@
 <style lang="scss">
+.v-slide-group__prev {
+    min-width: 0px !important;
+  }
 .trendCard{
- height: 100%;
-  position: relative;
+  width: 110px;
+  height: 90px;
   opacity: 85%;
+  padding: 5px;
   span{
-    font-size: 25px;
+    font-size: 12px;
     font-weight: 700;
+    color: grey;
   }
   img{
     position: relative;
+    overflow: hidden;
     top: 50%;
-    font-size: 25px;
+    font-size: 12px;
     left: 50%;
     opacity: 0.1;
     transform: translateX(-50%) translateY(-50%)
@@ -19,26 +25,22 @@
 </style>
 <template>
 
-  <v-row justify="center" class="ma-0 pa-4">
-    <v-col cols="12" md="8" lg="10" class="card">
+  <v-row justify="center" class="ma-0 pa-0">
+    <v-col cols="12" md="8" lg="10" :class="[$vuetify.breakpoint.mdAndDown ?  'cardMobile':'card' ]">
       <v-row justify="center" class=" pa-2">
-        <v-tabs height="190px"
+        <v-tabs height="110px" hide-slider center-active
             background-color="white"
-            center-active
-             hide-slider
         >
-          <v-tab v-for="category in allCategories.tags" :key="category" >
+          <v-tab style="width: 110px" v-for="category in allCategories.tags"  :key="category.image">
             <div class="trendCard" @click="categoryClicked(category)">
-              <v-img height="80%" width="200px"  :src=category.image></v-img>
+              <v-img height="80px"  :src=category.image></v-img>
               <span>{{category.name}}</span>
             </div>
-
-            </v-tab>
+          </v-tab>
         </v-tabs>
       </v-row>
       <v-row justify="center" class="content ">
-        <h1 style="color: #3FAEA3" v-if="!activeCategory">No active category -> showing trends</h1>
-        <v-col cols="12" class="pt-0 content-column">
+        <v-col cols="12" :style="[$vuetify.breakpoint.mdAndDown ? { 'column-count': 2 } : {  'column-count': 4}]" class="pt-0 content-column">
           <div v-if="!activeCategory">
             <v-img v-for="trend in allTrends.results" :key="trend.media[0].loopedmp4.preview" class="image" :lazy-src=trend.media[0].nanogif.url :src=trend.media[0].mediumgif.url></v-img>
           </div>
@@ -57,7 +59,8 @@ import {mapGetters, mapActions} from 'vuex'
 
 export default {
   data: () => ({
-    activeCategory:''
+    activeCategory:'',
+    tabs: 0
   }),
   methods: {
     categoryClicked:function (category){
